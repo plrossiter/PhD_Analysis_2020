@@ -1,0 +1,57 @@
+# Detector Volume           : LiquidSkinXenon GaseousSkinXenon LiquidSkinXenonBank LiquidXenonTarget InnerGaseousXenon ReverseFieldRegion
+# Generator                 : g4decay for BottomPMTs
+# Volume names according to : https://docs.google.com/spreadsheets/d/1LeFKQZXAQR5eaAQN4yZKqV3YdWsktrZLmSRKjogVO2I/edit#gid=2054789340
+# Additional notes          :
+
+# Set Verbose output
+/run/verbose       1
+/control/verbose   0
+/tracking/verbose  0
+/grdm/verbose      0
+
+# Set Bacc initialisation
+/run/initialize
+
+# Set Directory output for .bin files 
+# Passed in from calling script as environment variable 
+/control/getEnv OUTPUT_DIR
+/Bacc/io/outputDir {OUTPUT_DIR}
+
+# Set LUX Detector geometry
+/Bacc/detector/select LUXDetector
+#/LZ/gridWires off
+/Bacc/detector/update
+
+# Set Physics: Energy deposit only
+/Bacc/physicsList/useOpticalProcesses false
+
+# Set Sensitive Volumes record level
+# Record Level 2: energy deposits and multiple scatters
+
+#/Bacc/detector/recordLevel LiquidXenonTarget   2
+#/Bacc/detector/recordLevel ReverseFieldRegion  2
+
+/Bacc/detector/recordLevel ActiveXenon                2
+/Bacc/detector/recordLevel RFRXenon                   2
+#/Bacc/detector/recordLevel Bottom_XenonSpace          2
+#/Bacc/detector/recordLevel Bottom_PMT_Window          2
+#/Bacc/detector/recordLevel Bottom_PMT_PhotoCathode    2
+/Bacc/detector/recordLevel Bottom_PMT_Vacuum          2
+
+
+# Set Source Volumes
+
+# Set Source Volumes mass
+
+# Set Generator for Co60
+#/Bacc/source/set Bottom_PMT_Vacuum DecayChain_238_92 1 Bq EQUILIBRIUM
+#/Bacc/source/set Bottom_PMT_Vacuum DecayChain_232_90 1 Bq EQUILIBRIUM
+#/Bacc/source/set Bottom_PMT_Vacuum SingleDecay_40_19 1 Bq
+/Bacc/source/set Bottom_PMT_Vacuum SingleDecay_60_27 1 Bq
+
+ # Output .bin files
+/Bacc/io/outputName lux_BottomPMT_Co60_1e4_
+/Bacc/beamOn 10000
+exit
+
+

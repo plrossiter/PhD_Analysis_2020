@@ -1,0 +1,33 @@
+####################
+#
+# Condor Job submission
+# Job array description file
+#
+####################
+
+Index        = $(Process) + $ENV(STARTNUM)
+Values       = $INT(Index,%d)
+#getenv=True
+JobBatchName = lz_rG_$ENV(iso)_$ENV(stage)
+Executable   = $ENV(home)/$ENV(exec)
+Universe     = vanilla
+
+Error        = $ENV(dataDir)/$ENV(run)/$ENV(iso)/$ENV(stage)/outputs/output$(Values).err
+Output       = $ENV(dataDir)/$ENV(run)/$ENV(iso)/$ENV(stage)/outputs/output$(Values).txt
+
+environment  = "'iJob=$(Values)' now=$ENV(now) fileDir=$ENV(fileDir) dataDir=$ENV(dataDir) iso=$ENV(iso) run=$ENV(run) LZSimDir=$ENV(LZSimDir) TDRAnaDir=$ENV(TDRAnaDir) outName=$ENV(outName) user=$ENV(user) stage=$ENV(stage) boost=$ENV(boost) inputMacro=$ENV(inputMacro) inputBiasing=$ENV(inputBiasing)"
+
+
+#Cluster Requierments
+#4322MB current usage
+request_memory=4.8GB
+maxjobretirementtime=$ENV(maxjobtime)*3600
+#Requirements  = (Machine != "wn052.hep") || (Machine != "wn054.hep") || (Machine != "wn064.hep") || (Machine != "wn068.hep") || (Machine != "wn072.hep") || (Machine != "wn076.hep") || (Machine != "wn080.hep")
+
+queue $ENV(NUMJOBS)
+
+#unsed commands
+###############
+#Log = timing/log_$(Cluster)_$(Process).log
+#iJob="$i",now="$now",numDir="$numDir",LZSimDir="$LZSimDir",TDRAnaDir="$TDRAnaDir",outName="$outName",user="$user",stage="$stage",fileString="$fileString",
+#boost="$boost",inputMacro="$inputMacro",inputBiasing="$inputBiasing" $home/run.sh

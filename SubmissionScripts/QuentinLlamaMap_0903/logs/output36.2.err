@@ -1,0 +1,57 @@
+*** glibc detected *** ./CondorLlamaMapCalcForward: free(): invalid pointer: 0x0000000029407e30 ***
+======= Backtrace: =========
+/lib64/libc.so.6[0x311c675dee]
+/lib64/libc.so.6[0x311c678c3d]
+./CondorLlamaMapCalcForward[0x409396]
+./CondorLlamaMapCalcForward[0x40816c]
+./CondorLlamaMapCalcForward[0x40704f]
+./CondorLlamaMapCalcForward[0x40607b]
+./CondorLlamaMapCalcForward[0x409dfc]
+./CondorLlamaMapCalcForward[0x409232]
+./CondorLlamaMapCalcForward[0x407e2f]
+./CondorLlamaMapCalcForward[0x406a0d]
+./CondorLlamaMapCalcForward[0x405db4]
+./CondorLlamaMapCalcForward[0x405b4f]
+./CondorLlamaMapCalcForward[0x405ca3]
+./CondorLlamaMapCalcForward[0x409ade]
+./CondorLlamaMapCalcForward[0x408d2f]
+./CondorLlamaMapCalcForward[0x40766f]
+./CondorLlamaMapCalcForward[0x406287]
+./CondorLlamaMapCalcForward[0x405b2e]
+/lib64/libc.so.6(exit+0xe2)[0x311c635992]
+/lib64/libc.so.6(__libc_start_main+0x104)[0x311c61ed24]
+./CondorLlamaMapCalcForward[0x401d39]
+======= Memory map: ========
+00400000-0040f000 r-xp 00000000 00:28 3810439271                         /home/rossiter/XYZPositionCorrector/1809_version/CondorLlamaMapCalcForward
+0060f000-00610000 rw-p 0000f000 00:28 3810439271                         /home/rossiter/XYZPositionCorrector/1809_version/CondorLlamaMapCalcForward
+02596000-2a8fb000 rw-p 00000000 00:00 0                                  [heap]
+311c200000-311c220000 r-xp 00000000 08:02 22544473                       /lib64/ld-2.12.so
+311c420000-311c421000 r--p 00020000 08:02 22544473                       /lib64/ld-2.12.so
+311c421000-311c422000 rw-p 00021000 08:02 22544473                       /lib64/ld-2.12.so
+311c422000-311c423000 rw-p 00000000 00:00 0 
+311c600000-311c78a000 r-xp 00000000 08:02 22544893                       /lib64/libc-2.12.so
+311c78a000-311c98a000 ---p 0018a000 08:02 22544893                       /lib64/libc-2.12.so
+311c98a000-311c98e000 r--p 0018a000 08:02 22544893                       /lib64/libc-2.12.so
+311c98e000-311c990000 rw-p 0018e000 08:02 22544893                       /lib64/libc-2.12.so
+311c990000-311c994000 rw-p 00000000 00:00 0 
+311d200000-311d283000 r-xp 00000000 08:02 22545812                       /lib64/libm-2.12.so
+311d283000-311d482000 ---p 00083000 08:02 22545812                       /lib64/libm-2.12.so
+311d482000-311d483000 r--p 00082000 08:02 22545812                       /lib64/libm-2.12.so
+311d483000-311d484000 rw-p 00083000 08:02 22545812                       /lib64/libm-2.12.so
+311ee00000-311ee16000 r-xp 00000000 08:02 22545815                       /lib64/libgcc_s-4.4.7-20120601.so.1
+311ee16000-311f015000 ---p 00016000 08:02 22545815                       /lib64/libgcc_s-4.4.7-20120601.so.1
+311f015000-311f016000 rw-p 00015000 08:02 22545815                       /lib64/libgcc_s-4.4.7-20120601.so.1
+311f200000-311f2e8000 r-xp 00000000 08:02 8540734                        /usr/lib64/libstdc++.so.6.0.13
+311f2e8000-311f4e8000 ---p 000e8000 08:02 8540734                        /usr/lib64/libstdc++.so.6.0.13
+311f4e8000-311f4ef000 r--p 000e8000 08:02 8540734                        /usr/lib64/libstdc++.so.6.0.13
+311f4ef000-311f4f1000 rw-p 000ef000 08:02 8540734                        /usr/lib64/libstdc++.so.6.0.13
+311f4f1000-311f506000 rw-p 00000000 00:00 0 
+2b6fcfd4e000-2b6fcfd4f000 rw-p 00000000 00:00 0 
+2b6fcfd83000-2b6fcfe89000 rw-p 00000000 00:00 0 
+2b6fd0000000-2b6fd0021000 rw-p 00000000 00:00 0 
+2b6fd0021000-2b6fd4000000 ---p 00000000 00:00 0 
+2b6fdbd04000-2b6fdecee000 rw-p 00000000 00:00 0 
+7ffd96861000-7ffd96876000 rw-p 00000000 00:00 0                          [stack]
+7ffd96960000-7ffd96961000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+/home/rossiter/SubmissionScripts/QuentinLlamaMap_0903/run_LlamaMapCalcForward_180903.sh: line 22:  5721 Aborted                 ./CondorLlamaMapCalcForward $InputFilename $rjob $zjob $Date $StepTime $OUTPUT_DIR

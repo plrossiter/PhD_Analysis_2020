@@ -1,0 +1,8 @@
+NUMJOBS_START=$1
+NUMJOBS_FINISH=$2
+
+for i in `seq  $NUMJOBS_START $NUMJOBS_FINISH`
+do
+    source runBACCARAT_play.sh
+    sleep 2
+done

@@ -1,0 +1,33 @@
+#!/bin/bash                                                                                                                    
+
+echo "Setup executable input arguments"
+#InputFilename=/home/rossiter/XYZPositionCorrector/nonlinear100kv_gridhalf_4_5.txt
+#Date=0906
+#StepTime=1
+rjob=0.1
+#zjob=30.1
+echo "Making scratch & data directories"
+mkdir /scratch/rossiter/QuentinLlamaMap_$Date
+mkdir /scratch/rossiter/QuentinLlamaMap_$Date/$zjob
+#mkdir /data/rossiter/lz/XYZPositionCorrector/SimsMapMaker_180809
+
+echo "Setup Directories"
+export OUTPUT_DIR=/scratch/rossiter/QuentinLlamaMap_$Date/$zjob
+export EXPORT_DIR=/data/rossiter/lz/QuentinLlamaMap/Output/
+export EXECUTABLE_DIR=/home/rossiter/XYZPositionCorrector/1809_version/
+
+## move into the XYZPositionCorrector directory, and run the macro                                                      
+echo "Sourcing EXECUTABLE setup script"
+cd $EXECUTABLE_DIR
+./CondorLlamaMapCalcForward $InputFilename $rjob $zjob $Date $StepTime $OUTPUT_DIR
+
+echo "-> FINISHED RUNNING EXECUTABLE"
+
+## after macro has run, rootify                                                                                         
+cd $OUTPUT_DIR
+OUTPUT_FILE=$(ls *.txt)
+
+echo "DONE."
+cp $OUTPUT_DIR/$OUTPUT_FILE $EXPORT_DIR/$OUTPUT_FILE
+rm -r $OUTPUT_DIR
+cd $EXPORT_DIR

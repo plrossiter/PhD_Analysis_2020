@@ -1,0 +1,68 @@
+# Detector Volume           : LiquidSkinXenon GaseousSkinXenon LiquidSkinXenonBank LiquidXenonTarget InnerGaseousXenon ReverseFieldRegion
+# Generator                 : g4decay for Xe131m
+# Volume names according to : https://docs.google.com/spreadsheets/d/1LeFKQZXAQR5eaAQN4yZKqV3YdWsktrZLmSRKjogVO2I/edit#gid=2054789340
+# Additional notes          :
+
+# Set Verbose output
+/run/verbose       1
+/control/verbose   0
+/tracking/verbose  0
+/grdm/verbose      0
+
+# Set Bacc initialisation
+/run/initialize
+
+# Set Directory output for .bin files 
+# Passed in from calling script as environment variable 
+/control/getEnv OUTPUT_DIR
+/Bacc/io/outputDir {OUTPUT_DIR} 
+
+# Set LZ Detector geometry
+/Bacc/detector/select LZDetector
+/LZ/gridWires off
+/Bacc/detector/update
+
+# Set Physics: Energy deposit only
+/Bacc/physicsList/useOpticalProcesses false
+
+# Set Sensitive Volumes record level
+# Record Level 2: energy deposits and multiple scatters
+
+/Bacc/detector/recordLevel LiquidXenonTarget   2
+/Bacc/detector/recordLevel ReverseFieldRegion  2
+
+/Bacc/detector/recordLevel LiquidSkinXenon     2
+/Bacc/detector/recordLevel BottomSkinBank      2
+/Bacc/detector/recordLevel TopSkinBank         2
+/Bacc/detector/recordLevel LiquidSkinXenonBank 2
+
+/Bacc/detector/recordLevel ScintillatorCenter  2
+
+# Set Source Volumes
+
+# Set Source Volumes mass
+
+/Bacc/detector/setComponentMass LiquidSkinXenon 1500 kg
+/Bacc/detector/setComponentMass GaseousSkinXenon 1 kg
+/Bacc/detector/setComponentMass LiquidSkinXenonBank 500 kg
+/Bacc/detector/setComponentMass LiquidXenonTarget 7000 kg
+/Bacc/detector/setComponentMass InnerGaseousXenon 1 kg
+/Bacc/detector/setComponentMass ReverseFieldRegion 1000 kg
+
+# Set Generator for Xe131m
+/Bacc/source/set LiquidSkinXenon Xe131m_NEW 1 mBq/kg
+/Bacc/source/set GaseousSkinXenon Xe131m_NEW 1 mBq/kg
+/Bacc/source/set LiquidSkinXenonBank Xe131m_NEW 1 mBq/kg
+/Bacc/source/set LiquidXenonTarget Xe131m_NEW 1 mBq/kg
+/Bacc/source/set InnerGaseousXenon Xe131m_NEW 1 mBq/kg
+/Bacc/source/set ReverseFieldRegion Xe131m_NEW 1 mBq/kg
+
+ # Output .bin files
+/Bacc/io/outputName lz_xenon_Xe131m_NEW_g4decay_1e2_
+
+
+#/control/getEnv SEED
+#/Bacc/randomSeed {SEED}
+/Bacc/beamOn 100
+exit
+
